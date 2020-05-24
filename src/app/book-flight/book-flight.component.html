@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-md-5 col-md-offset-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading">Book the Flight</div>
+      <div class="panel-body">
+
+        <!-- Code the form here  -->
+        <form [formGroup]="bookingForm" (ngSubmit)="book()">
+
+            <label>Passenger Name:</label>
+            <input type="text" class="form-control" formControlName="passengerName">
+            <p *ngIf="bookingForm.controls.passengerName.errors && bookingForm.controls.passengerName.dirty" class="text-danger">This field is required!</p>
+          <br>
+          <label>Number of Tickets:</label>
+            <input type="number" class="form-control" formControlName="noOfTickets">
+            <p *ngIf="bookingForm.controls.noOfTickets.errors && bookingForm.controls.noOfTickets.dirty" class="text-danger">Enter the number of tickets greater than 0</p>
+          <br>
+          <label>Flight Id:</label>
+            <input type="text" class="form-control" formControlName="flightId">
+            <p *ngIf="bookingForm.controls.flightId.errors && bookingForm.controls.flightId.dirty" class="text-danger">Enter valid flightID</p>
+          <br>
+          <button type="submit" class="btn btn-primary" [disabled]="!bookingForm.valid || bookButton">Book</button>        
+          <br>
+        </form>
+        <br>
+        <div *ngIf="errorMessage!=null" class="text-danger">
+          <span class="error">{{errorMessage}}</span>
+        </div>
+        <div *ngIf="successMessage!=null" class="text-success">
+          <span class="success">{{successMessage}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

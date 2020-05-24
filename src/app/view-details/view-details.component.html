@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-5 col-md-offset-4">
+    <div class="panel panel-primary">
+      <div class="panel-heading"><h1>View Details</h1></div>
+      <div class="panel-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Passenger Name</th>
+              <th scope="col">Booking ID</th>
+              <th scope="col">No of Tickets</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let flight of flightDetails">
+              <td>{{flight.passengerName}}</td>
+              <td>{{flight.bookingId}}</td>
+              <td>{{flight.noOfTickets}}</td>
+              <td>{{flight.totalAmount}}</td>
+              <td><button [disabled]="flight.totalAmount>5000 || deletingStatus" class="btn btn-danger" (click)="delete(flight.bookingId)">Delete</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div [ngStyle]="{'display': (flightDetails) ? 'none' : 'block'}"><h3>Loading...</h3></div>
+        {{deletingStatus}}
+        {{successMessage}}
+        {{errorMessage}}
+        <!-- Code the required HTML output -->
+      </div>
+
+    </div>
+  </div>
+</div>
